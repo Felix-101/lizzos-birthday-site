@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>For Lizzie, From Migwo</title>
+  <meta name="theme-color" content="#ffa3cd">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;1,500&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="locked">
+
+  <!-- Opening screen: browsers only allow music to play after a tap -->
+  <div class="gate" id="gate">
+    <div class="gate-card">
+      <p class="gate-kicker">a little something for</p>
+      <p class="gate-name">Lizzie</p>
+      <button class="btn" id="open-btn">Tap to open 💌</button>
+      <p class="gate-hint">sound on 🎧</p>
+    </div>
+  </div>
+
+  <audio id="bg-music" loop preload="auto"></audio>
+  <button class="music-toggle" id="music-toggle" hidden aria-label="Pause music">
+    <span class="bars"><i></i><i></i><i></i></span>
+  </button>
+
+  <!-- 1. Hero -->
+  <header class="hero">
+    <div class="hero-bg" id="hero-bg"></div>
+    <div class="hero-content">
+      <h1 class="hero-title" id="hero-title"></h1>
+      <p class="hero-sub" id="hero-sub"></p>
+    </div>
+    <a class="scroll-cue" href="#story">scroll <span>↓</span></a>
+  </header>
+
+  <main>
+    <!-- 2. Where it all started -->
+    <section class="section" id="story">
+      <p class="kicker reveal">chapter one</p>
+      <h2 class="section-title reveal">Where It All Started</h2>
+      <p class="section-intro reveal" id="story-intro"></p>
+      <div class="timeline" id="story-moments"></div>
+    </section>
+
+    <!-- 3. Our songs -->
+    <section class="section section-tint" id="songs">
+      <button class="record reveal" id="record" aria-label="Play or pause the music">
+        <span class="record-disc"><span class="record-label">♥</span></span>
+        <span class="tonearm"></span>
+        <span class="record-hearts" aria-hidden="true">
+          <i>♥</i><i>♪</i><i>♥</i><i>♫</i><i>♥</i><i>♥</i><i>♪</i>
+        </span>
+      </button>
+      <p class="kicker reveal">chapter two</p>
+      <h2 class="section-title reveal">Press Play on Us</h2>
+      <p class="section-intro reveal">The soundtrack to us.</p>
+      <div class="song-grid" id="song-grid"></div>
+    </section>
+
+    <!-- 4. Random pictures -->
+    <section class="section" id="gallery">
+      <p class="kicker reveal">chapter three</p>
+      <h2 class="section-title reveal">Us, Out Here</h2>
+      <p class="section-intro reveal" id="gallery-intro"></p>
+      <div class="carousel reveal">
+        <button class="carousel-btn prev" id="gallery-prev" aria-label="Previous photo">‹</button>
+        <div class="carousel-track" id="gallery-track"></div>
+        <button class="carousel-btn next" id="gallery-next" aria-label="Next photo">›</button>
+        <div class="carousel-dots" id="gallery-dots"></div>
+      </div>
+    </section>
+
+    <!-- 5. Finale -->
+    <section class="finale" id="finale">
+      <div class="hearts" id="hearts" aria-hidden="true"></div>
+      <h2 class="finale-title reveal" id="finale-title"></h2>
+      <p class="finale-msg reveal" id="finale-msg"></p>
+      <p class="finale-sign reveal" id="finale-sign"></p>
+    </section>
+  </main>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">×</button>
+    <img id="lightbox-img" alt="">
+  </div>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
