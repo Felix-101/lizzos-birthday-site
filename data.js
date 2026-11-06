@@ -17,7 +17,7 @@ const SITE = {
   // Background music. Drop the MP3 into /music with this exact name.
   music: {
     src: "music/background.mp3",
-    label: "So Easy (To Fall in Love) — Olivia Dean",
+    label: "Dive — Olivia Dean",
   },
 
   story: {
@@ -32,32 +32,33 @@ const SITE = {
   },
 
   // Each song can have:
-  //   spotify:  the link from Spotify → Share → Copy Song Link (shows a playable player)
+  //   link:     a Spotify link (Share → Copy Song Link) or a YouTube / YouTube Music link
+//             (Share → Copy link). Either one shows a playable player on the card.
   //   images:   screenshots saved in /images/songs. Tap one on the site to see it full size.
   //             Use { src, position } to choose which part shows in the thumbnail ("center 30%" = nearer the top).
   //   featured: true makes the card twice as wide
-  // With no spotify link and no images, it shows a spinning vinyl with the title and artist.
+  // With no link and no images, it shows a spinning vinyl with the title and artist.
   songs: [
     {
       title: "Made For You",
       artist: "Banky W",
       featured: true,
-      spotify: "",
+      link: "",
       images: [
         { src: "images/songs/made-for-you.jpg", position: "center 35%" },
         { src: "images/songs/made-for-you-lyrics.jpg", position: "center 40%" },
       ],
       note: "Our song. Always.",
     },
-    { title: "So Easy (To Fall in Love)", artist: "Olivia Dean", spotify: "", images: [], note: "Your favourite artist, obviously." },
+    { title: "So Easy (To Fall in Love)", artist: "Olivia Dean", link: "", images: [], note: "Your favourite artist, obviously." },
     {
       title: "Jies",
       artist: "BNXN",
-      spotify: "",
+      link: "",
       images: [{ src: "images/songs/jies.jpg", position: "center bottom" }],
       note: "[Why this one is ours]",
     },
-    { title: "[Song title]", artist: "[Artist]", spotify: "", images: [], note: "[Why this one is ours]" },
+    { title: "[Song title]", artist: "[Artist]", link: "", images: [], note: "[Why this one is ours]" },
   ],
 
   gallery: {

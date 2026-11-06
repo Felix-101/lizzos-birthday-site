@@ -18,16 +18,34 @@
     return img;
   }
 
-  function spotifyEmbed(url) {
-    const match = /open\.spotify\.com\/(?:intl-[a-z-]+\/)?(track|album|playlist)\/([A-Za-z0-9]+)/.exec(url || "");
-    if (!match) return null;
+  // Turns a Spotify or YouTube / YouTube Music share link into a playable player
+  function songEmbed(url) {
+    url = (url || "").trim();
     const frame = el("iframe");
-    frame.src = `https://open.spotify.com/embed/${match[1]}/${match[2]}?theme=0`;
-    frame.height = 152;
     frame.loading = "lazy";
-    frame.title = "Spotify player";
     frame.allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture";
-    return frame;
+
+    const spotify = /open\.spotify\.com\/(?:intl-[a-z-]+\/)?(track|album|playlist)\/([A-Za-z0-9]+)/.exec(url);
+    if (spotify) {
+      frame.src = `https://open.spotify.com/embed/${spotify[1]}/${spotify[2]}?theme=0`;
+      frame.height = 152;
+      frame.title = "Spotify player";
+      return frame;
+    }
+
+    // music.youtube.com/watch?v=ID, youtube.com/watch?v=ID, youtu.be/ID, youtube.com/shorts/ID, …/playlist?list=ID
+    const video = /(?:youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/.exec(url);
+    const list = /youtube\.com\/.*[?&]list=([\w-]+)/.exec(url);
+    if (video || list) {
+      frame.src = video
+        ? `https://www.youtube-nocookie.com/embed/${video[1]}?rel=0`
+        : `https://www.youtube-nocookie.com/embed/videoseries?list=${list[1]}&rel=0`;
+      frame.className = "yt";
+      frame.title = "YouTube player";
+      frame.referrerPolicy = "strict-origin-when-cross-origin";
+      return frame;
+    }
+    return null;
   }
 
   // ── Hero ──
@@ -61,7 +79,7 @@
   // ── Our songs ──
   SITE.songs.forEach((song) => {
     const card = el("article", song.featured ? "song featured reveal" : "song reveal");
-    const embed = spotifyEmbed(song.spotify);
+    const embed = songEmbed(song.link || song.spotify);
     const shots = (song.images || []).map((entry) => (typeof entry === "string" ? { src: entry } : entry));
 
     if (shots.length) {
@@ -77,6 +95,13 @@
 
     // The Spotify player shows its own title, so only add ours when there isn't one
     if (embed) {
+      if (embed.className === "yt") {
+        const head = el("div", "song-head");
+        const info = el("div");
+        info.append(el("p", "song-title", song.title), el("p", "song-artist", song.artist));
+        head.append(info);
+        card.append(head);
+      }
       card.append(embed);
     } else {
       const head = el("div", "song-head");
