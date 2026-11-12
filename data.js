@@ -66,9 +66,8 @@ const SITE = {
       artist: "BNXN",
       link: "https://open.spotify.com/track/6dmuFoJ8jYh7kzai2twWNo",
       images: [{ src: "images/songs/jies.jpg", position: "center bottom" }],
-      note: "[Why this one is ours]",
+      note: "",
     },
-    { title: "[Song title]", artist: "[Artist]", link: "", images: [], note: "[Why this one is ours]" },
   ],
 
   gallery: {
