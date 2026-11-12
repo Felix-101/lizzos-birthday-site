@@ -22,12 +22,22 @@ const SITE = {
 
   story: {
     intro:
-      "[Write a few lines about how you two met — where you were, what you first thought of her, the moment you knew you'd be friends.]",
+      "The hair compliment that started it all and then there was Nyberg...",
     moments: [
-      { image: "images/story/1.jpg", date: "[When]", caption: "[The first photo we ever took together]" },
+      { image: "images/story/1.jpg", date: "October 4th", caption: "The first photo we ever took together" },
       // position = which part of the photo shows in the polaroid ("center 10%" = near the top)
-      { image: "images/story/2.jpg", position: "center 30%", date: "[When]", caption: "Liz is so mwah. [What was happening here?]" },
-      { image: "images/story/3.jpg", position: "center 10%", date: "[When]", caption: "Officially Super BFFs: each other's #1 for two months in a row." },
+      // date is optional: leave it out and no date tag shows
+      { image: "images/story/2.jpg", position: "center 30%", caption: "Liz is so mwah." },
+      { image: "images/story/3.jpg", position: "center 10%", caption: "Officially Super BFFs: each other's #1 for two months in a row." },
+      // A blank line (\n\n) in a caption starts a new paragraph
+      {
+        image: "images/story/4.jpg",
+        position: "center 60%",
+        caption:
+          "A little reminder that I'm really glad life brought us into each other's orbit. You're such a lovely person to have around, and I hope you never forget how special you are. Thank you for the laughs, the random moments, the comfort and simply being you.\n\n" +
+          "I hope life is always kind to you, that you get everything your heart desires and that you never run out of reasons to smile.\n\n" +
+          "I'm really, really glad I know you. Here's to many more memories, inside jokes and years of being in each other's lives. Love you, always. ♡",
+      },
     ],
   },
 
@@ -43,7 +53,7 @@ const SITE = {
       title: "Made For You",
       artist: "Banky W",
       featured: true,
-      link: "",
+      link: "https://open.spotify.com/track/4duswgfUluu0nOc07O4lMI",
       images: [
         { src: "images/songs/made-for-you.jpg", position: "center 35%" },
         { src: "images/songs/made-for-you-lyrics.jpg", position: "center 40%" },
@@ -54,7 +64,7 @@ const SITE = {
     {
       title: "Jies",
       artist: "BNXN",
-      link: "",
+      link: "https://open.spotify.com/track/6dmuFoJ8jYh7kzai2twWNo",
       images: [{ src: "images/songs/jies.jpg", position: "center bottom" }],
       note: "[Why this one is ours]",
     },

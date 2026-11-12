@@ -25,7 +25,7 @@
     frame.loading = "lazy";
     frame.allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture";
 
-    const spotify = /open\.spotify\.com\/(?:intl-[a-z-]+\/)?(track|album|playlist)\/([A-Za-z0-9]+)/.exec(url);
+    const spotify = /open\.spotify\.com\/(?:embed\/)?(?:intl-[a-z-]+\/)?(track|album|playlist)\/([A-Za-z0-9]+)/.exec(url);
     if (spotify) {
       frame.src = `https://open.spotify.com/embed/${spotify[1]}/${spotify[2]}?theme=0`;
       frame.height = 152;
@@ -59,13 +59,16 @@
   SITE.story.moments.forEach((moment) => {
     const item = el("article", "moment reveal");
     const frame = el("figure", "polaroid");
-    const img = photo(moment.image, moment.caption);
+    const paragraphs = moment.caption.split(/\n\s*\n/);
+    const img = photo(moment.image, paragraphs[0]);
     if (moment.position) img.style.objectPosition = moment.position;
     frame.append(img);
 
     const text = el("div");
     if (moment.date) text.append(el("span", "moment-date", moment.date));
-    text.append(el("p", "moment-caption", moment.caption));
+    // Long, letter-style captions get a slightly smaller size so they don't tower over the photo
+    const captionClass = moment.caption.length > 200 ? "moment-caption letter" : "moment-caption";
+    paragraphs.forEach((para) => text.append(el("p", captionClass, para)));
 
     item.append(frame, text);
     $("#story-moments").append(item);

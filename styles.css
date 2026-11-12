@@ -266,6 +266,8 @@ img { display: block; max-width: 100%; }
   margin-bottom: 12px;
 }
 .moment-caption { font-family: var(--serif); font-size: clamp(1.25rem, 3vw, 1.6rem); line-height: 1.4; }
+.moment-caption + .moment-caption { margin-top: 0.9em; }
+.moment-caption.letter { font-size: clamp(1.05rem, 2.2vw, 1.2rem); line-height: 1.6; }
 
 /* ── Songs ────────────────────────────────────── */
 
